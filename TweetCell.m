@@ -50,6 +50,7 @@
         
       //  [self.retweetImageConstraint setConstant:-15];
       //  [self.retweetUserConstraint setConstant:-15];
+        self.reTweetHeight.constant = 0.0f;
     }
     else
     {
@@ -59,6 +60,7 @@
         
       //  [self.retweetImageConstraint setConstant:1.0];
       //  [self.retweetUserConstraint setConstant:1.0];
+        self.reTweetHeight.constant = 16.0f;
     }
     
     self.nameLabel.text = tweet.user.name;

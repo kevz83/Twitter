@@ -124,6 +124,8 @@ TweetCell *_stubCell;
         
         NSLog(@"List count %ld", self.myList.count);
         
+        //TODO: Get the lowest maxid from the result and set it.
+        // Change the name of sinceId to maxId.
         Tweet *lastTweet =  (Tweet *)[self.myList lastObject];
         self.sinceId = lastTweet.tweetId;
         

@@ -56,8 +56,9 @@
 
     if(sinceId != 0)
     {
+        // TODO: Need to change the name from sinceId to maxId
         parameters = @{@"count" : maxCount,
-                   @"since_id" : sinceId };
+                   @"max_id" : sinceId };
     }
     else
     {

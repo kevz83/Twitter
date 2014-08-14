@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 
 @property (nonatomic, strong)Tweet *tweet;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *reTweetHeight;
 
 @property (nonatomic, strong)IBOutlet NSLayoutConstraint *retweetImageConstraint;
 @property (nonatomic, strong)IBOutlet NSLayoutConstraint *retweetUserConstraint;
