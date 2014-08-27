@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "HomeTimeLineViewController.h"
+#import "MainViewController.h"
 #import "Client.h"
 
 @implementation NSURL (dictionaryFromQueryString)
@@ -60,10 +61,13 @@
                     NSLog(@"Access token");
                     [client.requestSerializer saveAccessToken:accessToken];
                  
-                    HomeTimeLineViewController *homeVC = [[HomeTimeLineViewController alloc] init];
-                    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:homeVC];
+                    /*    HomeTimeLineViewController *homeVC = [[HomeTimeLineViewController alloc] init];
+                        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:homeVC];
+                     */
                     
-                    [self.window.rootViewController presentViewController:navController animated:YES completion:nil];
+                    MainViewController *mainVC = [[MainViewController alloc] init];
+                    
+                    [self.window.rootViewController presentViewController:mainVC animated:YES completion:nil];
                     
                     /*
                     

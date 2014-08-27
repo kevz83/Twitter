@@ -15,7 +15,7 @@
 
 - (void)login;
 
-- (AFHTTPRequestOperation *)homeTimeLineWithSinceId:(NSNumber *)sinceId
+- (AFHTTPRequestOperation *)homeTimeLineWithMaxId:(NSNumber *)maxId
                                            success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                                            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 

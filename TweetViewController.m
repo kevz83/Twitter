@@ -106,6 +106,7 @@
     [self presentViewController:createTweetVM animated:YES completion:nil];
 }
 
+// TODO: refactor the code to pull it in a method on TweetCell.
 - (IBAction)retweetClick:(id)sender
 {
     Client *instance = [Client instance];
@@ -158,6 +159,7 @@
     }
 }
 
+// TODO: refactor the code to pull it in a method on TweetCell.
 - (IBAction)favoritesClick:(id)sender
 {
     Client *instance = [Client instance];

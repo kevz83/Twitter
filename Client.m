@@ -47,18 +47,18 @@
     return [self POST:[NSString stringWithFormat:@"1.1/statuses/destroy/%@.json", tweetId] parameters:nil success:success failure:failure];
 }
 
-- (AFHTTPRequestOperation *)homeTimeLineWithSinceId:(NSNumber *)sinceId
+- (AFHTTPRequestOperation *)homeTimeLineWithMaxId:(NSNumber *)maxId
                                            success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                                            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     NSDictionary *parameters;
     NSNumber *maxCount = [NSNumber numberWithInt:25];
 
-    if(sinceId != 0)
+    if(maxId != 0)
     {
         // TODO: Need to change the name from sinceId to maxId
         parameters = @{@"count" : maxCount,
-                   @"max_id" : sinceId };
+                   @"max_id" : maxId };
     }
     else
     {

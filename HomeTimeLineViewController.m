@@ -22,7 +22,7 @@
 @interface HomeTimeLineViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong)NSNumber *sinceId;
+@property (nonatomic, strong)NSNumber *maxId;
 @property (nonatomic, strong) NSMutableArray *myList;
 
 @end
@@ -50,7 +50,7 @@ TweetCell *_stubCell;
     [self.tableView registerNib:[UINib nibWithNibName:@"TweetCell" bundle:nil] forCellReuseIdentifier:@"TweetCell"];
     
     _myList = [NSMutableArray array];
-    _sinceId = 0;
+    _maxId = 0;
     
     UINavigationBar *navBar = self.navigationController.navigationBar;
     navBar.barTintColor = [UIColor colorWithRed:0.251 green:0.6 blue:1 alpha:1];
@@ -59,7 +59,9 @@ TweetCell *_stubCell;
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
      navBar.topItem.title = @"Home";
     
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(signout:)];
+  //  UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(signout:)];
+    
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"hamburger"] style:UIBarButtonItemStylePlain target:self action:@selector(signout:)];
     self.navigationItem.leftBarButtonItem = leftButton;
     
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(newTweet:)];
@@ -71,7 +73,7 @@ TweetCell *_stubCell;
     
     [self.tableView addPullToRefreshWithActionHandler:^{
         self.tableView.showsInfiniteScrolling = YES;
-        weakSelf.sinceId = 0;
+        weakSelf.maxId = 0;
         [weakSelf.myList removeAllObjects];
         [weakSelf.tableView reloadData];
         [weakSelf loadFromServer];
@@ -85,7 +87,8 @@ TweetCell *_stubCell;
 
 - (void)signout:(id)sender
 {
-    Client *instance = [Client instance];
+     [[NSNotificationCenter defaultCenter] postNotificationName:@"hamburgerClicked" object:nil];    
+ /*   Client *instance = [Client instance];
     BOOL isRemoved = [instance.requestSerializer removeAccessToken];
     
     if(isRemoved)
@@ -95,7 +98,7 @@ TweetCell *_stubCell;
     else
     {
         NSLog(@"Logout failed");
-    }
+    }*/
 }
 
 - (void)newTweet:(id)sender
@@ -107,7 +110,7 @@ TweetCell *_stubCell;
 - (void)loadFromServer
 {
     Client *client = [Client instance];
-    [client homeTimeLineWithSinceId:_sinceId success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [client homeTimeLineWithMaxId:_maxId success:^(AFHTTPRequestOperation *operation, id responseObject) {
        
         NSArray *respObj = (NSArray *)responseObject;
         
@@ -127,7 +130,7 @@ TweetCell *_stubCell;
         //TODO: Get the lowest maxid from the result and set it.
         // Change the name of sinceId to maxId.
         Tweet *lastTweet =  (Tweet *)[self.myList lastObject];
-        self.sinceId = lastTweet.tweetId;
+        self.maxId = lastTweet.tweetId;
         
         [self reloadTableView:currentRow];
         
@@ -188,6 +191,7 @@ TweetCell *_stubCell;
     return tweetCell;
 }
 
+// TODO: refactor the code to pull it in a method on TweetCell.
 - (void)retweetClicked:(id)sender
 {
     Client *instance = [Client instance];
@@ -250,6 +254,7 @@ TweetCell *_stubCell;
     [self presentViewController:createTweetVM animated:YES completion:nil];
 }
 
+// TODO: refactor the code to pull it in a method on TweetCell.
 - (void)favoriteClicked:(id)sender
 {
     Client *instance = [Client instance];
