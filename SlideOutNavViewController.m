@@ -11,6 +11,7 @@
 #import "PersonCell.h"
 #import "Client.h"
 #import "LoginViewController.h"
+#import "User.h"
 
 @interface SlideOutNavViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -45,6 +46,8 @@
 - (void)onTap:(UITapGestureRecognizer *)tapGestureRecognizer
 {
     ProfileViewController *profileVC = [[ProfileViewController alloc] init];
+    profileVC.user = [User currentUser];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"menuSelected" object:profileVC];
 }
 

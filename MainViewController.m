@@ -38,6 +38,7 @@
         mentionsViewController.viewMode = MentionsTimeLine;
         
         ProfileViewController *profileViewController = [[ProfileViewController alloc] init];
+        profileViewController.user = [User currentUser];
         
         self.viewControllers = @[profileViewController, homeViewController, mentionsViewController];
         

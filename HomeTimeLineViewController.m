@@ -16,6 +16,7 @@
 #import "UIView+SuperView.h"
 #import "TweetViewController.h"
 #import "CreateTweetViewController.h"
+#import "ProfileViewController.h"
 
 
 
@@ -166,6 +167,15 @@ TweetCell *_stubCell;
     [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
 }
 
+- (void)onProfileImageTap:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    Tweet *item = [_myList objectAtIndex:tapGestureRecognizer.view.tag];
+
+    ProfileViewController *profileVC = [[ProfileViewController alloc] init];
+    profileVC.user = item.user;
+    [self.navigationController pushViewController:profileVC animated:YES];
+}
+
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -197,6 +207,11 @@ TweetCell *_stubCell;
     
     Tweet *item = [_myList objectAtIndex:indexPath.row];
     tweetCell.tweet = item;
+  
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onProfileImageTap:)];
+    tweetCell.profileImage.tag = indexPath.row;
+    
+    [tweetCell.profileImage addGestureRecognizer:tapGestureRecognizer];
     
     return tweetCell;
 }
