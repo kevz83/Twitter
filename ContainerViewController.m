@@ -59,7 +59,7 @@
 
 - (void)setupUI
 {
-    [self.navigationController setViewControllers:@[self.viewControllers[0]]];
+    [self.navigationController setViewControllers:@[self.viewControllers[1]]];
     [self displayContentController:self.navigationController];
 }
 

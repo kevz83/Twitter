@@ -56,7 +56,6 @@
 
     if(maxId != 0)
     {
-        // TODO: Need to change the name from sinceId to maxId
         parameters = @{@"count" : maxCount,
                    @"max_id" : maxId };
     }
@@ -66,6 +65,25 @@
     }
     
     return [self GET:@"1.1/statuses/home_timeline.json" parameters:parameters success:success failure:failure];
+}
+
+- (AFHTTPRequestOperation *)mentionsTimeLineWithMaxId:(NSNumber *)maxId
+                                              success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                                              failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSDictionary *parameters;
+    NSNumber *maxCount = [NSNumber numberWithInt:25];
+    
+    if(maxId != 0)
+    {
+        parameters = @{@"count" : maxCount, @"max_id" : maxId};
+    }
+    else
+    {
+        parameters = @{@"count" : maxCount};
+    }
+    
+    return [self GET:@"1.1/statuses/mentions_timeline.json" parameters:parameters success:success failure:failure];
 }
 
 - (AFHTTPRequestOperation *)retweetWithId:(NSNumber *)tweetId

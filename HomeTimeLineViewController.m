@@ -57,11 +57,13 @@ TweetCell *_stubCell;
     navBar.tintColor = [UIColor whiteColor];
     
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-     navBar.topItem.title = @"Home";
     
-  //  UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(signout:)];
+    if(self.viewMode == MentionsTimeLine)
+        navBar.topItem.title = @"Mentions";
+     else
+         navBar.topItem.title = @"Home";
     
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"hamburger"] style:UIBarButtonItemStylePlain target:self action:@selector(signout:)];
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"hamburger"] style:UIBarButtonItemStylePlain target:self action:@selector(hamburger:)];
     self.navigationItem.leftBarButtonItem = leftButton;
     
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(newTweet:)];
@@ -85,20 +87,9 @@ TweetCell *_stubCell;
     }];
 }
 
-- (void)signout:(id)sender
+- (void)hamburger:(id)sender
 {
      [[NSNotificationCenter defaultCenter] postNotificationName:@"hamburgerClicked" object:nil];    
- /*   Client *instance = [Client instance];
-    BOOL isRemoved = [instance.requestSerializer removeAccessToken];
-    
-    if(isRemoved)
-    {
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-    }
-    else
-    {
-        NSLog(@"Logout failed");
-    }*/
 }
 
 - (void)newTweet:(id)sender
@@ -107,40 +98,59 @@ TweetCell *_stubCell;
     [self presentViewController:createTweetVM animated:YES completion:nil];
 }
 
+- (void)processResults:(AFHTTPRequestOperation *)operation withResponseObject:(id)responseObject
+{
+    NSArray *respObj = (NSArray *)responseObject;
+    
+    if(respObj.count == 0)
+    {
+        self.tableView.showsInfiniteScrolling = NO;
+        return;
+    }
+    
+    int currentRow = (int)[self.myList count];
+    
+    NSError *error;
+    [self.myList addObjectsFromArray:[MTLJSONAdapter modelsOfClass:Tweet.class fromJSONArray:responseObject error:&error]];
+    
+    NSLog(@"List count %ld", self.myList.count);
+    
+    // Get the lowest maxid from the result and set it.
+    Tweet *lastTweet =  (Tweet *)[self.myList lastObject];
+    self.maxId = lastTweet.tweetId;
+    
+    [self reloadTableView:currentRow];
+    
+    [self.tableView.infiniteScrollingView stopAnimating];
+    [self.tableView.pullToRefreshView stopAnimating];
+}
+
 - (void)loadFromServer
 {
     Client *client = [Client instance];
-    [client homeTimeLineWithMaxId:_maxId success:^(AFHTTPRequestOperation *operation, id responseObject) {
-       
-        NSArray *respObj = (NSArray *)responseObject;
-        
-        if(respObj.count == 0)
-        {
+    
+    if(self.viewMode == HomeTimeLine)
+    {
+        [client homeTimeLineWithMaxId:_maxId success:^(AFHTTPRequestOperation *operation, id responseObject) {
+         
+            [self processResults:operation withResponseObject:responseObject];
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             self.tableView.showsInfiniteScrolling = NO;
-            return;
-        }
-        
-        int currentRow = (int)[self.myList count];
-        
-        NSError *error;
-        [self.myList addObjectsFromArray:[MTLJSONAdapter modelsOfClass:Tweet.class fromJSONArray:responseObject error:&error]];
-        
-        NSLog(@"List count %ld", self.myList.count);
-        
-        //TODO: Get the lowest maxid from the result and set it.
-        // Change the name of sinceId to maxId.
-        Tweet *lastTweet =  (Tweet *)[self.myList lastObject];
-        self.maxId = lastTweet.tweetId;
-        
-        [self reloadTableView:currentRow];
-        
-        [self.tableView.infiniteScrollingView stopAnimating];
-        [self.tableView.pullToRefreshView stopAnimating];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        self.tableView.showsInfiniteScrolling = NO;
-        NSLog(@"error %@", error);
-    }];
+            NSLog(@"error %@", error);
+        }];
+    }
+    else if(self.viewMode == MentionsTimeLine)
+    {
+        [client mentionsTimeLineWithMaxId:_maxId success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            [self processResults:operation withResponseObject:responseObject];
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            self.tableView.showsInfiniteScrolling = NO;
+            NSLog(@"error %@", error);
+        }];
+    }
 }
 
 - (void)reloadTableView:(int)startingRow
@@ -310,12 +320,10 @@ TweetCell *_stubCell;
     return size.height+1;
 }*/
 
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
     return 100;
 }
-
 
 - (void)didReceiveMemoryWarning
 {

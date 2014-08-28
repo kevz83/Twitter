@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum
+{
+    HomeTimeLine,
+    MentionsTimeLine
+    
+} ViewMode;
+
 @interface HomeTimeLineViewController : UIViewController
+
+@property ViewMode viewMode;
+
+//- (id)initWithViewMode:(ViewMode)viewMode;
 
 @end

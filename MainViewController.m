@@ -32,7 +32,11 @@
     if (self) {
         
         HomeTimeLineViewController *homeViewController = [[HomeTimeLineViewController alloc] init];
+        homeViewController.viewMode = HomeTimeLine;
+        
         HomeTimeLineViewController *mentionsViewController = [[HomeTimeLineViewController alloc] init];
+        mentionsViewController.viewMode = MentionsTimeLine;
+        
         ProfileViewController *profileViewController = [[ProfileViewController alloc] init];
         
         self.viewControllers = @[profileViewController, homeViewController, mentionsViewController];
@@ -154,7 +158,7 @@
     UIView *childView = [self getNavView];
     [self.view sendSubviewToBack:childView];
     
-    [UIView animateWithDuration:2 animations:^{
+    [UIView animateWithDuration:1 animations:^{
         
         _containerViewController.view.frame = CGRectMake(self.view.frame.size.width - 60, 0, self.view.frame.size.width, self.view.frame.size.height);
         
@@ -168,7 +172,7 @@
 
 - (void)movePanelOriginalPosition
 {
-    [UIView animateWithDuration:2 animations:^{
+    [UIView animateWithDuration:1 animations:^{
         _containerViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     } completion:^(BOOL finished)
      {
