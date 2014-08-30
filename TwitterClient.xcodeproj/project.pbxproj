@@ -33,6 +33,11 @@
 		E87CD1C319AE7F0100B35CF6 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87CD1C119AE7F0100B35CF6 /* ProfileViewController.xib */; };
 		E87CD1C719AE7F6200B35CF6 /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87CD1C519AE7F6200B35CF6 /* ContainerViewController.m */; };
 		E87CD1C819AE7F6200B35CF6 /* ContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87CD1C619AE7F6200B35CF6 /* ContainerViewController.xib */; };
+		E87CD1CC19AFA62B00B35CF6 /* StatsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E87CD1CA19AFA62B00B35CF6 /* StatsCell.m */; };
+		E87CD1CD19AFA62B00B35CF6 /* StatsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87CD1CB19AFA62B00B35CF6 /* StatsCell.xib */; };
+		E87CD1DA19AFF04500B35CF6 /* ProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E87CD1D919AFF04500B35CF6 /* ProfileHeaderView.m */; };
+		E87CD1DC19AFF05B00B35CF6 /* ProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87CD1DB19AFF05B00B35CF6 /* ProfileHeaderView.xib */; };
+		E8AED3C119B1756100292B88 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = E8AED3C019B1756100292B88 /* UIImage+ImageEffects.m */; };
 		E8B42B8F19953325008428CF /* TweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B42B8D19953325008428CF /* TweetViewController.m */; };
 		E8B42B9019953325008428CF /* TweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B42B8E19953325008428CF /* TweetViewController.xib */; };
 		E8B42B92199534DD008428CF /* bird_blue_48.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B42B91199534DD008428CF /* bird_blue_48.png */; };
@@ -104,6 +109,14 @@
 		E87CD1C419AE7F6200B35CF6 /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
 		E87CD1C519AE7F6200B35CF6 /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
 		E87CD1C619AE7F6200B35CF6 /* ContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContainerViewController.xib; sourceTree = "<group>"; };
+		E87CD1C919AFA62B00B35CF6 /* StatsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsCell.h; sourceTree = "<group>"; };
+		E87CD1CA19AFA62B00B35CF6 /* StatsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsCell.m; sourceTree = "<group>"; };
+		E87CD1CB19AFA62B00B35CF6 /* StatsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatsCell.xib; sourceTree = "<group>"; };
+		E87CD1D819AFF04500B35CF6 /* ProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileHeaderView.h; sourceTree = "<group>"; };
+		E87CD1D919AFF04500B35CF6 /* ProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileHeaderView.m; sourceTree = "<group>"; };
+		E87CD1DB19AFF05B00B35CF6 /* ProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileHeaderView.xib; sourceTree = "<group>"; };
+		E8AED3BF19B1756100292B88 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		E8AED3C019B1756100292B88 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		E8B42B8C19953325008428CF /* TweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetViewController.h; sourceTree = "<group>"; };
 		E8B42B8D19953325008428CF /* TweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetViewController.m; sourceTree = "<group>"; };
 		E8B42B8E19953325008428CF /* TweetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetViewController.xib; sourceTree = "<group>"; };
@@ -163,12 +176,15 @@
 		E82C2BFA19ACD2940043A6D5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E87CD1C119AE7F0100B35CF6 /* ProfileViewController.xib */,
+				E87CD1C619AE7F6200B35CF6 /* ContainerViewController.xib */,
 				E8F16C45197647520023B0C1 /* LoginViewController.xib */,
 				E853AE7F198D9A6800B32808 /* HomeTimeLineViewController.xib */,
 				E8B42B8E19953325008428CF /* TweetViewController.xib */,
 				E8B42B97199677B7008428CF /* CreateTweetViewController.xib */,
 				E82C2BEE19ACCC980043A6D5 /* MainViewController.xib */,
 				E82C2BF719ACD28C0043A6D5 /* SlideOutNavViewController.xib */,
+				E87CD1DB19AFF05B00B35CF6 /* ProfileHeaderView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -193,6 +209,9 @@
 				E82C2C0019AE28E50043A6D5 /* PersonCell.h */,
 				E82C2C0119AE28E50043A6D5 /* PersonCell.m */,
 				E82C2C0219AE28E50043A6D5 /* PersonCell.xib */,
+				E87CD1C919AFA62B00B35CF6 /* StatsCell.h */,
+				E87CD1CA19AFA62B00B35CF6 /* StatsCell.m */,
+				E87CD1CB19AFA62B00B35CF6 /* StatsCell.xib */,
 			);
 			name = TableCells;
 			sourceTree = "<group>";
@@ -217,6 +236,8 @@
 		E853AEDA19949CA400B32808 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				E8AED3BF19B1756100292B88 /* UIImage+ImageEffects.h */,
+				E8AED3C019B1756100292B88 /* UIImage+ImageEffects.m */,
 				E853AEDB19949CC200B32808 /* UIView+SuperView.h */,
 				E853AEDC19949CC200B32808 /* UIView+SuperView.m */,
 			);
@@ -226,18 +247,18 @@
 		E8F16C001976269E0023B0C1 = {
 			isa = PBXGroup;
 			children = (
-				E82C2BFA19ACD2940043A6D5 /* Views */,
-				E853AEDA19949CA400B32808 /* Categories */,
-				E853AE8819909AB700B32808 /* Images */,
-				E853AE82198D9C2B00B32808 /* TableCells */,
-				E853AE79198C326400B32808 /* Models */,
-				E8F16C3F197647180023B0C1 /* ViewControllers */,
 				E8F16C3B197626C50023B0C1 /* API */,
+				E853AEDA19949CA400B32808 /* Categories */,
+				E8F16C0B1976269F0023B0C1 /* Frameworks */,
+				E853AE8819909AB700B32808 /* Images */,
+				E853AE79198C326400B32808 /* Models */,
+				E807A3A0A9334207B8470BD0 /* Pods.xcconfig */,
+				E8F16C0A1976269F0023B0C1 /* Products */,
+				E853AE82198D9C2B00B32808 /* TableCells */,
 				E8F16C121976269F0023B0C1 /* TwitterClient */,
 				E8F16C2B1976269F0023B0C1 /* TwitterClientTests */,
-				E8F16C0B1976269F0023B0C1 /* Frameworks */,
-				E8F16C0A1976269F0023B0C1 /* Products */,
-				E807A3A0A9334207B8470BD0 /* Pods.xcconfig */,
+				E8F16C3F197647180023B0C1 /* ViewControllers */,
+				E82C2BFA19ACD2940043A6D5 /* Views */,
 			);
 			sourceTree = "<group>";
 		};
@@ -328,10 +349,10 @@
 				E82C2BF619ACD28C0043A6D5 /* SlideOutNavViewController.m */,
 				E87CD1BF19AE7F0100B35CF6 /* ProfileViewController.h */,
 				E87CD1C019AE7F0100B35CF6 /* ProfileViewController.m */,
-				E87CD1C119AE7F0100B35CF6 /* ProfileViewController.xib */,
 				E87CD1C419AE7F6200B35CF6 /* ContainerViewController.h */,
 				E87CD1C519AE7F6200B35CF6 /* ContainerViewController.m */,
-				E87CD1C619AE7F6200B35CF6 /* ContainerViewController.xib */,
+				E87CD1D819AFF04500B35CF6 /* ProfileHeaderView.h */,
+				E87CD1D919AFF04500B35CF6 /* ProfileHeaderView.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -417,9 +438,11 @@
 				E853AE8D19909BA500B32808 /* favorite_on.png in Resources */,
 				E853AE9719909BE600B32808 /* retweet_on.png in Resources */,
 				E853AE9819909BE600B32808 /* retweet.png in Resources */,
+				E87CD1DC19AFF05B00B35CF6 /* ProfileHeaderView.xib in Resources */,
 				E87CD1C819AE7F6200B35CF6 /* ContainerViewController.xib in Resources */,
 				E8B42B92199534DD008428CF /* bird_blue_48.png in Resources */,
 				E8F16C171976269F0023B0C1 /* InfoPlist.strings in Resources */,
+				E87CD1CD19AFA62B00B35CF6 /* StatsCell.xib in Resources */,
 				E853AE87198D9C7700B32808 /* TweetCell.xib in Resources */,
 				E853AE9419909BE600B32808 /* reply_hover.png in Resources */,
 				E853AE8C19909BA500B32808 /* favorite_hover.png in Resources */,
@@ -486,6 +509,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E87CD1CC19AFA62B00B35CF6 /* StatsCell.m in Sources */,
+				E87CD1DA19AFF04500B35CF6 /* ProfileHeaderView.m in Sources */,
+				E8AED3C119B1756100292B88 /* UIImage+ImageEffects.m in Sources */,
 				E853AE78198C310200B32808 /* User.m in Sources */,
 				E8F16C46197647520023B0C1 /* LoginViewController.m in Sources */,
 				E8B42B98199677B7008428CF /* CreateTweetViewController.m in Sources */,

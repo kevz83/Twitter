@@ -17,7 +17,12 @@ static User *currentUser = nil;
 {
     return @{@"name" : @"name",
              @"imageURL" : @"profile_image_url",
-             @"screenName" : @"screen_name"
+             @"screenName" : @"screen_name",
+             @"profileBackgroundImage" : @"profile_banner_url",
+             @"followersCount" : @"followers_count",
+             @"friendsCount" : @"friends_count",
+             @"location" : @"location",
+             @"statusesCount" : @"statuses_count"
              };
 }
 

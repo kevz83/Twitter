@@ -86,6 +86,20 @@
     return [self GET:@"1.1/statuses/mentions_timeline.json" parameters:parameters success:success failure:failure];
 }
 
+- (AFHTTPRequestOperation *)userTimeLineWithScreenName:(NSString *)screenName
+                                              success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                                              failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSDictionary *parameters;
+    NSNumber *count = [NSNumber numberWithInt:20];
+
+    parameters = @{@"count" : count, @"screen_name" : screenName};
+   
+    
+    return [self GET:@"1.1/statuses/user_timeline.json" parameters:parameters success:success failure:failure];
+}
+
+
 - (AFHTTPRequestOperation *)retweetWithId:(NSNumber *)tweetId
                                   success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                                   failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
